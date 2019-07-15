@@ -7,7 +7,7 @@ const service = axios.create({
     timeout: 5000 // request timeout
 })
 
-// request interceptor
+// // request interceptor
 service.interceptors.request.use(
     // config => {
     //     // 判断是否有登录态

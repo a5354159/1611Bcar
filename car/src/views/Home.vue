@@ -26,7 +26,6 @@
     </div>
 </template>
 <script lang="ts">
-// import { Component, Vue } from 'vue-property-decorator';
 import { mapState, mapMutations, mapActions } from "vuex";
 export default {
     data() {

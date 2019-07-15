@@ -1,9 +1,7 @@
 import {addSign} from '@/api/index.ts';
-
 const state = {
   GomuchList:[]
 }
-
 const actions = {
     async getDetails({ commit }:any, payload:any) {
         let data:any = await addSign(payload);
