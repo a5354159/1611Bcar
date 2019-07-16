@@ -4,14 +4,14 @@
             <div class="img">
                 <img :src="Detil.CoverPhoto" alt />
             </div>
-
             <div class="info">
                 <p>
-                    {{Detil.market_attribute.dealer_price}}
-                    <span>万</span>
+                    <span>{{Detil.market_attribute.dealer_price}}</span>
+                    <!-- <span>{{detil_dealer}}</span> -->
                 </p>
                 <p>指导价{{Detil.market_attribute.official_refer_price}}</p>
-                <button>询问底价</button>
+                <!-- <p>指导价{{detil_refer}}</p> -->
+                <button @click="somuch(1)">询问底价</button>
             </div>
             <div class="list">
                 <div class="c-type">
@@ -25,11 +25,15 @@
                             <li>
                                 <p>{{item.market_attribute.year}}款 {{item.car_name}}</p>
                                 <p>{{item.horse_power}}马力{{item.gear_num}}档{{item.trans_type}}</p>
-                                <p >
+                                <p>
                                     <span>指导价{{item.market_attribute.dealer_price_max}}</span>
                                     <span>{{item.market_attribute.dealer_price_min}}起</span>
                                 </p>
-                                <button data-id="131315" data-hover="hover">询问底价</button>
+                                <button
+                                    data-id="131315"
+                                    data-hover="hover"
+                                    @click="somuch(item.car_id)"
+                                >询问底价</button>
                             </li>
                         </ul>
                     </div>
@@ -50,7 +54,8 @@ export default {
     props: {},
     components: {},
     data() {
-        return {};
+        return {
+        };
     },
     computed: {
         ...mapState({
@@ -60,20 +65,32 @@ export default {
     methods: {
         ...mapActions({
             getDetil: "list/getDetil"
-        })
+        }),
+        somuch(num) {
+            console.log(num);
+            this.$router.push({path:'/quotation',query:{
+                carId:num,
+                _1563237651079:''
+            }})
+            // carId: 131315
+            // cityId: 201
+        }
     },
     created() {
         // console.log(this.$route.query);
         this.getDetil(this.$route.query);
         console.log(this.Detil);
     },
-    mounted() {}
+    mounted() {
+        // console.log(this.Detil.AliasName);
+    }
 };
 </script>
 <style scoped lang="scss">
 .wrap {
     width: 100%;
-    height: 100%;
+    // height: 100%;
+    margin-bottom: 1rem;
 }
 .img {
     height: 200px;

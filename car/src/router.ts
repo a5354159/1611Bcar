@@ -25,6 +25,11 @@ export default new Router({
       path: '/car',
       name: 'car',
       component: () => import(/* webpackChunkName: "about" */ './views/car.vue')
+    },
+    {
+      path: '/quotation',
+      name: 'quotation',
+      component: () => import(/* webpackChunkName: "about" */ './views/quotation.vue')
     }
   ]
 })

@@ -14,3 +14,8 @@ export let getContent = (params:any)=>{
 export let detil = (params:any)=>{
   return request.get('http://baojia.chelun.com/v2-car-getInfoAndListById.html?SerialID='+params.SerialID+'&'+params._1563237651079);
 }
+
+//价格咨询
+export let quotation = (params:any)=>{
+  return request.get('http://baojia.chelun.com/v2-dealer-alllist.html?carId='+params.carId+'&cityId='+params.cityId+'&'+params._1563237651079);
+}

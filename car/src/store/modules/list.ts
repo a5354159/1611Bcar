@@ -1,8 +1,9 @@
-import {addSign,getContent,detil} from '@/api/index.ts';
+import {addSign,getContent,detil,quotation} from '@/api/index.ts';
 const state = {
   GomuchList:[],
   Content:[],
-  Detil:[]
+  Detil:[],
+  quotation:[]
 }
 const actions = {
     async getDetails({ commit }:any, payload:any) {
@@ -35,8 +36,15 @@ const actions = {
         let data:any = await detil(payload);
         // console.log('detil',data)
         commit('detil',data.data)
+      },
+
+       //询问价格
+       async getQuotation({ commit }:any, payload:any) {
+        // console.log('getquotation',payload)
+        let data:any = await quotation(payload);
+        console.log('getquotation',data)
+        commit('getquotation',data.data)
       }
-      
 }
 
 const mutations = {
@@ -51,6 +59,10 @@ const mutations = {
   detil(state:any, payload:any) {
     console.log('detil',payload)
     state.Detil = payload;
+  },
+  getquotation(state:any, payload:any) {
+    console.log('getquotation',payload)
+    state.quotation = payload;
   }
 }
 
