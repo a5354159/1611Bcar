@@ -1,18 +1,44 @@
+    
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <BrandList :data="brandList"/> 
+    <LetterList :data="letterList" /> 
+
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
-
-@Component({
-  components: {
-    HelloWorld,
+import Vue from "vue";
+import LetterList from "@/components/LetterList.vue"; // @ is an alias to /src
+import BrandList from "@/components/BrandList.vue"; // @ is an alias to /src
+import { mapActions, mapState } from "vuex";
+export default Vue.extend({
+  name: "home",
+  computed: {
+    ...mapState({
+      letterList: (state: any) => state.home.letterList,
+      brandList: (state: any) => state.home.brandList
+    })
   },
-})
-export default class Home extends Vue {}
+  methods: {
+    ...mapActions({
+      getBrandList: "home/getBrandList"
+    })
+  },
+  created() {
+    this.getBrandList();
+  },
+  components: {
+    BrandList,
+    LetterList
+  }
+});
 </script>
+
+<style lang="scss" scoped>
+@import "../scss/global.scss";
+.home {
+  background-color: $page-background-color;
+  height: 100%;
+}
+</style>
