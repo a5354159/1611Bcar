@@ -12,7 +12,7 @@
                     </dl>
                 </div>
             </div>
-            <div class="inner" v-if="flag">
+            <div class="inner" v-if="flag" @click="flg">
                 <div class="wrap">
                     <div v-for="(item, index) in Content" :key="index" >
                         <p>{{item.GroupName}}</p>
@@ -73,6 +73,9 @@ export default {
             getDetails: "list/getDetails",
             getConten: "list/getConten"
         }),
+        flg(){
+            this.flag = false;
+        },
         conten(con: any) {
             // console.log(con);
             this.flag = true;

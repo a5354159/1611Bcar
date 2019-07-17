@@ -30,8 +30,7 @@
                                     <span>{{item.market_attribute.dealer_price_min}}起</span>
                                 </p>
                                 <button
-                                    data-id="131315"
-                                    data-hover="hover"
+                                    
                                     @click="somuch(item.car_id)"
                                 >询问底价</button>
                             </li>
@@ -42,7 +41,7 @@
         </div>
 
         <div class="bottom">
-            <p>询问底价</p>
+            <p >询问底价</p>
             <p>本地经销商为你报价</p>
         </div>
     </div>
@@ -91,6 +90,7 @@ export default {
     width: 100%;
     // height: 100%;
     margin-bottom: 1rem;
+    overflow: hidden;
 }
 .img {
     height: 200px;
