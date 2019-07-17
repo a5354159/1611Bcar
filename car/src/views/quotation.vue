@@ -26,7 +26,7 @@
                     </li>
                     <li>
                         <span>城市</span>
-                        <span>北京</span>
+                        <span @click="jumpcity">{{cityonly}}></span>
                     </li>
                 </ul>
                 <div class="quotation">
@@ -55,7 +55,7 @@
                 </ul>
             </div>
         </div>
-
+      <City/>
         <!-- <footer>
             <button>询最低价</button>
         </footer>-->
@@ -63,23 +63,32 @@
     </div>
 </template>
 <script lang='ts'>
+import City from "@/components/City.vue";
 import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
   props: {},
-  components: {},
+  components: {
+    City
+  },
   data() {
-    return {};
+    return {
+    
+    };
   },
   computed: {
     ...mapState({
-      quotation: (state: any) => state.list.quotation
+      quotation: (state: any) => state.list.quotation,
+      cityonly: (state: any) => state.city.cityonly
     })
   },
   methods: {
     ...mapActions({
       getQuotation: "list/getQuotation"
-    })
+    }),
+    jumpcity() {
+      this.$store.commit('city/setcityShow',true)
+    }
   },
   created() {
     console.log(this.$route.query);
@@ -188,6 +197,7 @@ header {
 }
 .dealer-info {
   ul {
+    background: #fff;
     padding: 0 0.18rem;
     li {
       position: relative;
