@@ -4,7 +4,10 @@
       @touchstart="touchStart"
       @touchmove="touchMove"
       @touchend="touchEnd">
-      <li v-for="(item) in data" :key="item" :class="current==item?'active':''">{{item}}</li>
+      <li v-for="(item) in data" 
+      :key="item" 
+      :class="current==item?'active':''"
+      >{{item}}</li>
     </ul>
     <span v-if="isTouch" class="letter">{{current}}</span>
     </div>
@@ -15,18 +18,21 @@ import Vue from "vue";
 export default Vue.extend({
   data() {
     return {
-      current: "",
       isTouch: false
     };
   },
   props: {
     data: {
       type: Array
+    },
+    current: {
+      type: String
     }
   },
   methods: {
     touchStart(e: Event): void {
       this.isTouch = true;
+      this.touchMove(e);
     },
     touchMove(e: Event): void {
       // console.log('e...', e);
@@ -44,11 +50,13 @@ export default Vue.extend({
         letterIndex = this.data.length - 1;
       }
       // console.log('letter...', this.data[letterIndex]);
-      this.current = this.data[letterIndex];
+      // this.cureen = this.data[letterIndex];
+      this.$emit("update:current", this.data[letterIndex]);
     },
     touchEnd(e: Event): void {
       this.isTouch = false;
-      this.current = "";
+      // this.cureen = "";
+      this.$emit("update:current", "");
     }
   }
 });
@@ -74,7 +82,7 @@ li {
   font-weight: 500;
   padding: 0 0.1rem;
   height: 0.4rem;
-  width: 0.4rem;
+  width: 0.5rem;
 }
 li.active {
   font-size: 0.36rem;

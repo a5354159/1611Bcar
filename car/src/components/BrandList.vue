@@ -1,14 +1,16 @@
 <template>
-    <div class="wrap" id="list">
+    <div class="wrap" id="list" ref='scrollEle'>
         <div class="entry"></div>
         <div class="car-brander">
             <div v-for="(item,index) in data" :key="index" :id='index'>
-                <p>{{index}}</p>
+                <p :ref="index">{{index}}</p>
                 <ul>
                     <li v-for="items in item" 
                     :key='items.MasterID' 
                     :data-id='items.MasterID' 
-                    class='flex-row flex-centerY'>
+                    class='flex-row flex-centerY'
+                    @click="clickFun(items.MasterID)"
+                    >
                         <img :src="items.CoverPhoto" alt="" />
                         <span>{{items.Name}}</span>
                     </li>
@@ -19,11 +21,38 @@
 </template>
 
 <script lang="ts">
+import { mapActions, mapState, mapMutations } from "vuex";
 import Vue from "vue";
 export default Vue.extend({
   props: {
     data: {
       type: Object
+    },
+    current: {
+      type: String
+    }
+  },
+  watch: {
+    current(val) {
+      // console.log(val);
+      if (val) {
+        this.$refs.scrollEle.scrollTop = this.$refs[val][0].offsetTop;
+      }
+    }
+  },
+  methods: {
+    ...mapActions({
+      addList: "home/addList",
+      rightUp: "home/rightUp"
+    }),
+    ...mapMutations({
+      openFasles: "home/choos"
+    }),
+    clickFun(id: any) {
+      this.rightUp(id);
+    },
+    openFasle() {
+      this.openFasles(false);
     }
   }
 });
@@ -33,11 +62,12 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import "@/scss/global.scss";
 .wrap {
-  overflow: scroll;
   height: 100%;
+  overflow-y: scroll;
   .car-brander {
     div {
       background: #fff;
+      // overflow: scroll;
       > p {
         font-size: 0.28rem;
         line-height: 0.4rem;

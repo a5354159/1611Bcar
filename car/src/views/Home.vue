@@ -1,9 +1,9 @@
     
 <template>
   <div class="home">
-    <BrandList :data="brandList"/> 
-    <LetterList :data="letterList" /> 
-
+    <BrandList :data="brandList"   :current='current'/> 
+    <LetterList :data="letterList" :current.sync='current'/> 
+    <SidebarList />
   </div>
 </template>
 
@@ -11,8 +11,15 @@
 import Vue from "vue";
 import LetterList from "@/components/LetterList.vue"; // @ is an alias to /src
 import BrandList from "@/components/BrandList.vue"; // @ is an alias to /src
+import SidebarList from "@/components/SidebarList.vue"; // @ is an alias to /src
+
 import { mapActions, mapState } from "vuex";
 export default Vue.extend({
+  data() {
+    return {
+      current: ""
+    };
+  },
   name: "home",
   computed: {
     ...mapState({
@@ -30,7 +37,8 @@ export default Vue.extend({
   },
   components: {
     BrandList,
-    LetterList
+    LetterList,
+    SidebarList
   }
 });
 </script>

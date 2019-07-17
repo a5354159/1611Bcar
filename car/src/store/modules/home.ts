@@ -1,8 +1,13 @@
-import { getlist } from "@/services";
+import { getlist, rightUpdate, deiltcar } from "@/services";
 
 const state = {
   brandList: {} = {},
-  letterList: [] = []
+  letterList: [] = [],
+  typeList: [] = [],
+  num: "A",
+  lists: [] = [],
+  choos: false,
+  deilts: [] = []
 };
 
 const actions = {
@@ -26,6 +31,19 @@ const actions = {
       }
     );
     commit("updateLetterList", Array.from(new Set(letterList)));
+  },
+  async updataNum({ commit }: any, payload: any): Promise<void> {
+    commit("updataNums", payload);
+  },
+  async rightUp({ commit }: any, payload: any) {
+    let data = await rightUpdate(payload);
+    commit("rightUpdata", data.data);
+    commit("choos", true);
+  },
+  async deiltlis({ commit }: any, payload: any) {
+    let data = await deiltcar(payload);
+    console.log(data);
+    commit("deiltcars", data.data);
   }
 };
 const mutations = {
@@ -37,6 +55,18 @@ const mutations = {
   },
   updateTypeList(state: any, payload: Array<Object>) {
     state.typeList = payload;
+  },
+  updataNums(state: any, payload: any) {
+    return (state.num = payload);
+  },
+  rightUpdata(state: any, payload: any) {
+    return (state.lists = payload);
+  },
+  deiltcars(state: any, payload: any) {
+    return (state.deilts = payload);
+  },
+  choos(state: any, payload: any) {
+    return (state.choos = payload);
   }
 };
 export default {
