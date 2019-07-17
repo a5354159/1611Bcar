@@ -29,7 +29,7 @@ export default new Router({
     {
       path: '/quotation',
       name: 'quotation',
-      component: () => import(/* webpackChunkName: "about" */ './views/quotation.vue')
+      component: () => import(/* webpackChunkName:"about" */ './views/quotation.vue')
     }
   ]
 })
