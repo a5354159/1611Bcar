@@ -4,8 +4,8 @@
             <p>可向多个商家咨询最低价，商家及时回复</p>
         </header>
         <div class="content">
-            <div data-hover="hover" class="q-info flex-row" v-if="quotation.details">
-                <img  :src="quotation.details.serial.Picture" />
+            <div data-hover="hover" class="q-info flex-row" v-if="quotation.details" @click="car()">
+                <img :src="quotation.details.serial.Picture" />
                 <div class="flex-column flex-centerX">
                     <p>{{quotation.details.serial.AliasName}}</p>
                     <p>2019款 {{quotation.details.car_name}}</p>
@@ -37,8 +37,8 @@
             <div class="dealer-info">
                 <p class="tip">选择报价经销商</p>
                 <ul>
-                    <li class="active" v-for="(item, index) in quotation.list" :key="index">
-                        <span>a</span>
+                    <li v-for="(item, index) in quotation.list" :key="index">
+                        <span :class="{'active': isActive}" @click="isActive=!isActive">✔</span>
                         <div class="inner">
                             <p>
                                 <span>{{item.dealerShortName}}</span>
@@ -69,7 +69,9 @@ export default {
     props: {},
     components: {},
     data() {
-        return {};
+        return {
+             isActive: true
+        };
     },
     computed: {
         ...mapState({
@@ -79,7 +81,14 @@ export default {
     methods: {
         ...mapActions({
             getQuotation: "list/getQuotation"
-        })
+        }),
+        car() {
+            this.$router.push({ path: "/type" });
+        },
+        add(num){
+            console.log(num)
+            // this.quotation.list[num]
+        }
     },
     created() {
         console.log(this.$route.query);
@@ -201,13 +210,19 @@ header {
             > span {
                 // width: 10px;
                 // height: 10px;
-                background: skyblue;
-                padding: 2px 6px;
+                // background: skyblue;
+                box-sizing: border-box;
+                padding: 0px 3px 0px 4px;
                 border-radius: 50%;
+                color: #fff;
+                // border: 1px solid #aaa;
+                font-size: 0.1rem;
+                margin-left: 0.05rem;
+                border: 1px solid #aaa;
             }
             > div {
                 // flex: 1;
-                width: 92%;
+                width: 91%;
             }
             p:first-child {
                 font-size: 0.3rem;
@@ -234,5 +249,10 @@ header {
             }
         }
     }
+}
+.active {
+    border: 1px solid #fff;
+    background: skyblue;
+    border: none;
 }
 </style>
