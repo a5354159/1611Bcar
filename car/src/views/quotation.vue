@@ -4,11 +4,11 @@
             <p>可向多个商家咨询最低价，商家及时回复</p>
         </header>
         <div class="content">
-            <div data-hover="hover" class="q-info flex-row">
-                <img :src="quotation.details.serial.Picture" />
+            <div data-hover="hover" class="q-info flex-row" v-if="quotation.details">
+                <img  :src="quotation.details.serial.Picture" />
                 <div class="flex-column flex-centerX">
-                    <p>奥迪A4L</p>
-                    <p>2019款 35 TFSI 进取版 国V</p>
+                    <p>{{quotation.details.serial.AliasName}}</p>
+                    <p>2019款 {{quotation.details.car_name}}</p>
                 </div>
                 <span>></span>
             </div>
@@ -74,29 +74,7 @@ export default {
     computed: {
         ...mapState({
             quotation: (state: any) => state.list.quotation
-        }),
-        a(val) {
-            // var name = "word!";
-            // if (typeof name === "undefined") {
-            //     var name = "jack";
-            //     console.log("goodby" + name);
-            // } else {
-            //     console.log("hello" + name);
-            // }
-            switch(val){
-                case 'A':
-                    console.log('clA');
-                    break;
-                case 'B':
-                    console.log('clB');
-                    break;
-                    case undefined:
-                    console.log('aaaaaaaaa');
-                    break;
-                default:
-                    console.log('nnnnnn')
-            }
-        }
+        })
     },
     methods: {
         ...mapActions({
@@ -111,7 +89,6 @@ export default {
             cityId: 201,
             _1563237651079: ""
         });
-        this.a(new String('A'))
     },
     mounted() {}
 };
