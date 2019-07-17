@@ -13,21 +13,23 @@ export default new Router({
       name: 'home',
       component: Home
     },
-    {
-      path: '/deilt',
-      name: 'deilt',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (about.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ '@/views/carDeit.vue')
-    }
     // {
-    //   path: '/about',
-    //   name: 'about',
+    //   path: '/deilt',
+    //   name: 'deilt',
     // //   // route level code-splitting
     // //   // this generates a separate chunk (about.[hash].js) for this route
     // //   // which is lazy-loaded when the route is visited.
-    //   component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue')
-    // }
+    //   component: () => import(/* webpackChunkName: "about" */ '@/views/carDeit.vue')
+    // },
+    {
+      path: '/car',
+      name: 'car',
+      component: () => import(/* webpackChunkName: "about" */ '@/views/car.vue')
+    },
+    {
+      path: '/quotation',
+      name: 'quotation',
+      component: () => import(/* webpackChunkName: "about" */ '@/views/quotation.vue')
+    }
   ]
 })

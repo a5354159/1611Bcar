@@ -3,7 +3,7 @@
     <div class="right">
       <div class="eve" v-for="(item,index) in list" :key="index">
         <span>{{item.GroupName}}</span>
-        <div v-for="(citem,cindex) in item.GroupList" :key="cindex" class="eveXia"  @click="jumpedil(citem.SerialID)">
+        <div v-for="(citem,cindex) in item.GroupList" :key="cindex" class="eveXia"  @click="jumpedil(citem)">
           <img :src="citem.Picture" alt="">
           <div class="eveRight">
             <span>{{citem.AliasName}}</span>
@@ -36,11 +36,11 @@ export default Vue.extend({
     })
   },
   methods: {
-    jumpedil(id) {
+    jumpedil(item) {
       this.$router.push({
-        name: "deilt",
+        name: "car",
         query: {
-          id
+          SerialID:item.SerialID
         }
       });
     }
