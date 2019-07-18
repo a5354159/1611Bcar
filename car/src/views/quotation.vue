@@ -18,11 +18,11 @@
                 <ul>
                     <li>
                         <span>姓名</span>
-                        <input type="text" placeholder="输入你的真实中文姓名" maxlength="4" />
+                        <input type="text" placeholder="输入你的真实中文姓名" maxlength="4" :value="name" @change="nameMsg"/>
                     </li>
                     <li>
                         <span>手机</span>
-                        <input type="tel" placeholder="输入你的真实手机号码" maxlength="11" />
+                        <input type="tel" placeholder="输入你的真实手机号码" maxlength="11" :value="ipth" @change="ipthMsg"/>
                     </li>
                     <li>
                         <span>城市</span>
@@ -30,7 +30,7 @@
                     </li>
                 </ul>
                 <div class="quotation">
-                    <button data-hover="hover">询最低价</button>
+                    <button data-hover="hover" @click="SeeAll">询最低价</button>
                 </div>
             </div>
 
@@ -73,7 +73,8 @@ export default {
   },
   data() {
     return {
-    
+      name: "",
+      ipth: 18501255505
     };
   },
   computed: {
@@ -87,7 +88,20 @@ export default {
       getQuotation: "list/getQuotation"
     }),
     jumpcity() {
-      this.$store.commit('city/setcityShow',true)
+      this.$store.commit("city/setcityShow", true);
+    },
+
+    nameMsg(e: any) {
+      console.log(e);
+      // this.name = e.data;
+    },
+    ipthMsg(e: any) {
+      console.log(e);
+      // this.ipth = e.data;
+    },
+    SeeAll() {
+      alert(this.name);
+      alert(this.ipth);
     }
   },
   created() {
@@ -176,6 +190,7 @@ header {
         box-sizing: border-box;
         color: #555;
         border: none;
+        outline: none;
       }
     }
   }
