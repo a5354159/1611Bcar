@@ -38,11 +38,11 @@ export function rightUpdate(payload: any) {
   );
 }
 
-// export function deiltcar(payload: any) {
-//   return request.get(
-//     `v2-car-getInfoAndListById.html?SerialID=${payload * 1}&_1563328882019`
-//   );
-// }
+export function deiltcar(payload: any) {
+  return request.get(
+    `v2-car-getInfoAndListById.html?SerialID=${payload * 1}&_1563328882019`
+  );
+}
 
 //车辆detil
 export let detil = (params: any) => {

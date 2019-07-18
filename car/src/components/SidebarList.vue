@@ -38,7 +38,7 @@ export default Vue.extend({
   methods: {
     jumpedil(item) {
       this.$router.push({
-        name: "car",
+        name: "carDeit",
         query: {
           SerialID:item.SerialID
         }

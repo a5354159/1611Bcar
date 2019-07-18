@@ -7,7 +7,7 @@ const state = {
   num: "A",
   lists: [] = [],
   choos: false,
-  deilts: [] = []
+  deilts: {} = {}
 };
 
 const actions = {
@@ -42,7 +42,7 @@ const actions = {
   },
   async deiltlis({ commit }: any, payload: any) {
     let data = await deiltcar(payload);
-    console.log(data);
+    // console.log(data);
     commit("deiltcars", data.data);
   }
 };
@@ -63,7 +63,8 @@ const mutations = {
     return (state.lists = payload);
   },
   deiltcars(state: any, payload: any) {
-    return (state.deilts = payload);
+    console.log('deilts....',payload)
+    return state.deilts = payload;
   },
   choos(state: any, payload: any) {
     return (state.choos = payload);
