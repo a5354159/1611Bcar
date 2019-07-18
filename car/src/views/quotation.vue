@@ -74,7 +74,8 @@ export default {
   data() {
     return {
       name: "",
-      ipth: 18501255505
+      ipth: 18501255505,
+      isActive:false
     };
   },
   computed: {
@@ -232,9 +233,14 @@ header {
       > span {
         // width: 10px;
         // height: 10px;
-        background: skyblue;
-        padding: 2px 6px;
+        background: #fff;
+        padding: 2px 3px;
         border-radius: 50%;
+        color: #fff;
+        border: 1px solid #aaa;
+        font-size: 0.1rem;
+        margin-right: 0.1rem;
+
       }
       > div {
         // flex: 1;

@@ -16,7 +16,7 @@
       </div>
       <div :class="flag?'city active':'city'" @click="SideHide">
           <ul id="cityList">
-            <li v-for="(item,index) in secondCity" :key='index' :data-id='item.CityID' @click="cityonlys(item.CityName)">
+            <li v-for="(item,index) in secondCity" :key='index' :data-id='item.CityID' @click="cityonlys(item.CityName,item.CityID)">
                 {{item.CityName}}
             </li>
           </ul>
@@ -58,7 +58,7 @@ export default Vue.extend({
         this.flag = false;
       }
     },
-    cityonlys(city: String) {
+    cityonlys(city: String,CityID) {
       this.$store.commit("city/setcityonly", city);
       this.$store.commit("city/setcityShow", false);
     }
