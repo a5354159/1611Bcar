@@ -4,7 +4,7 @@
             <div class="img">
                 <img :src="Detil.CoverPhoto" alt />
             </div>
-            <div class="info">
+            <div class="info" v-if="Detil.market_attribute">
                 <p>
                     <span>{{Detil.market_attribute.dealer_price}}</span>
                     <!-- <span>{{detil_dealer}}</span> -->

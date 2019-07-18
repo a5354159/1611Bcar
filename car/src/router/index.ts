@@ -31,10 +31,10 @@ export default new Router({
       name: 'quotation',
       component: () => import(/* webpackChunkName: "about" */ '@/views/quotation.vue')
     },
-    // {
-    //   path: '/City',
-    //   name: 'City',
-    //   component: () => import(/* webpackChunkName: "about" */ '@/views/City.vue')
-    // }
+    {
+      path: '/type',
+      name: 'type',
+      component: () => import(/* webpackChunkName:"about" */ '@/views/type.vue')
+    }
   ]
 })

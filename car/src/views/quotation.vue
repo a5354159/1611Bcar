@@ -4,11 +4,11 @@
             <p>可向多个商家咨询最低价，商家及时回复</p>
         </header>
         <div class="content">
-            <div data-hover="hover" class="q-info flex-row">
+            <div data-hover="hover" class="q-info flex-row" v-if="quotation.details" @click="car()">
                 <img :src="quotation.details.serial.Picture" />
                 <div class="flex-column flex-centerX">
-                    <p>奥迪A4L</p>
-                    <p>2019款 35 TFSI 进取版 国V</p>
+                    <p>{{quotation.details.serial.AliasName}}</p>
+                    <p>2019款 {{quotation.details.car_name}}</p>
                 </div>
                 <span>></span>
             </div>
@@ -37,8 +37,8 @@
             <div class="dealer-info">
                 <p class="tip">选择报价经销商</p>
                 <ul>
-                    <li class="active" v-for="(item, index) in quotation.list" :key="index">
-                        <span>a</span>
+                    <li v-for="(item, index) in quotation.list" :key="index">
+                        <span :class="{'active': isActive}" @click="isActive=!isActive">✔</span>
                         <div class="inner">
                             <p>
                                 <span>{{item.dealerShortName}}</span>
@@ -90,7 +90,13 @@ export default {
     jumpcity() {
       this.$store.commit("city/setcityShow", true);
     },
-
+   car() {
+            this.$router.push({ path: "/type" });
+        },
+        add(num){
+            console.log(num)
+            // this.quotation.list[num]
+        },
     nameMsg(e: any) {
       console.log(e);
       // this.name = e.data;
@@ -259,5 +265,10 @@ header {
       }
     }
   }
+}
+.active {
+    border: 1px solid #fff;
+    background: skyblue;
+    border: none;
 }
 </style>
