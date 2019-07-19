@@ -3,17 +3,17 @@
         <div class="car">
              <div class="content">
                 <div class="img">
-                    <img src="http://img2.bitautoimg.com/autoalbum/files/20160831/022/12341202292972_5235269_8.jpg" alt="">
-                    <span>7942张图片</span>
+                    <img :src="deiltlist.CoverPhoto" alt="" data-hover='hover'>
+                    <span>{{deiltlist.pic_group_count}}张图片</span>
                 </div>
                 <div class="info">
                     <p>
-                        21.08-41.1
+                        {{deiltlist.market_attribute.dealer_price}}
                         <span>万</span>
                     </p>
-                    <p>指导价 28.68-40.18万</p>
+                    <p>指导价 {{deiltlist.market_attribute.official_refer_price}}万</p>
                     <div class="action active">
-                        <button>询问底价</button>
+                        <button>{{deiltlist.BottomEntranceTitle}}</button>
                     </div>
                 </div>
                 <div class="c-list">
@@ -22,20 +22,29 @@
                         <span>2019</span>
                     </div>
                     <div>
-                        <p>1.4L/110kW 涡轮增压</p>
+                      <block v-for='item in deiltlist.list' :key='item.car_id' :data-id='item.car_id'>
+                        <p>{{item.exhaust_str}}/{{item.max_power_str}} {{item.inhale_type}}</p>
                         <ul>
                             <li>
-                                <p>2019款 35 TFSI 进取版 国V</p>
-                                <p>150马力7档双离合</p>
+                                <p>{{item.market_attribute.year}}款 {{item.car_name}}</p>
+                                <p>{{item.max_power}}马力{{item.gear_num}}档{{item.trans_type}}</p>
                                 <p>
-                                    <span>指导价 29.30万</span>
-                                    <span>20.65万起</span>
+                                    <span>指导价 {{item.market_attribute.official_refer_price}}</span>
+                                    <span>{{item.market_attribute.dealer_price_min}}起</span>
                                 </p>
-                                <button>询问低价</button>
+                                <button @click="somuch(
+                                  item.car_id,
+                                 
+                                )">询问低价</button>
                             </li>
                         </ul>
+                        </block>
                     </div>
                 </div>
+            </div>
+            <div class="bottom">
+              <p></p>
+              <p></p>
             </div>
         </div>
            
@@ -46,7 +55,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { mapState, mapActions } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 export default Vue.extend({
   data() {
     return {};
@@ -59,11 +68,17 @@ export default Vue.extend({
   methods: {
     ...mapActions({
       deiltFun: "home/deiltlis"
-    })
+    }),
+    somuch(id) {
+      console.log(id)
+      this.$router.push({path:'/quotation',query:{
+          carId:id,
+          _1563237651079:''
+      }})}
   },
   created() {
-    this.deiltFun(this.$route.query.id);
-    console.log(this.deiltlist);
+    this.deiltFun(this.$route.query.SerialID);
+    console.log(this.deiltlist.id);
   }
 });
 </script>
@@ -152,7 +167,7 @@ export default Vue.extend({
             padding-right: 0.46rem;
           }
         }
-        > div > p {
+         div>block>  p {
           padding: 0 0.2rem;
           height: 0.5rem;
           line-height: 0.5rem;
@@ -160,7 +175,7 @@ export default Vue.extend({
           color: #999;
           background: #f4f4f4;
         }
-        > div > ul {
+         div ul {
           background: #fff;
           li {
             padding: 0 0.2rem;

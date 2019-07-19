@@ -1,16 +1,16 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from '@/views/Home.vue'
+import Vue from "vue";
+import Router from "vue-router";
+import Home from "@/views/Home.vue";
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'home',
+      path: "/",
+      name: "home",
       component: Home
     },
     // {
@@ -22,19 +22,26 @@ export default new Router({
     //   component: () => import(/* webpackChunkName: "about" */ '@/views/carDeit.vue')
     // },
     {
-      path: '/car',
-      name: 'car',
-      component: () => import(/* webpackChunkName: "about" */ '@/views/car.vue')
+      path: "/carDeit",
+      name: "carDeit",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "@/views/carDeit.vue")
+    },
+    // {
+    //   path: '/car',
+    //   name: 'car',
+    //   component: () => import(/* webpackChunkName: "about" */ '@/views/car.vue')
+    // },
+    {
+      path: "/quotation",
+      name: "quotation",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "@/views/quotation.vue")
     },
     {
-      path: '/quotation',
-      name: 'quotation',
-      component: () => import(/* webpackChunkName: "about" */ '@/views/quotation.vue')
-    },
-    {
-      path: '/type',
-      name: 'type',
-      component: () => import(/* webpackChunkName:"about" */ '@/views/type.vue')
+      path: "/type",
+      name: "type",
+      component: () => import(/* webpackChunkName:"about" */ "@/views/type.vue")
     }
   ]
-})
+});
