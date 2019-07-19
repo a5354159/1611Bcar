@@ -6,7 +6,7 @@
                     <img :src="deiltlist.CoverPhoto" alt="" data-hover='hover'>
                     <span>{{deiltlist.pic_group_count}}张图片</span>
                 </div>
-                <div class="info">
+                <div class="info" v-if="deiltlist.market_attribute">
                     <p>
                         {{deiltlist.market_attribute.dealer_price}}
                         <span>万</span>
