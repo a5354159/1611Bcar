@@ -59,7 +59,7 @@ export default Vue.extend({
       }
     },
     cityonlys(city: String,CityID) {
-      this.$store.commit("city/setcityonly", city);
+      this.$store.commit("city/setcityonly", {city,CityID});
       this.$store.commit("city/setcityShow", false);
     }
   }

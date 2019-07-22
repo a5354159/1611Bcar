@@ -24,9 +24,9 @@
                         <span>手机</span>
                         <input type="tel" placeholder="输入你的真实手机号码" maxlength="11" :value="ipth" @change="ipthMsg"/>
                     </li>
-                    <li>
+                    <li v-if="cityonly">
                         <span>城市</span>
-                        <span @click="jumpcity">{{cityonly}}></span>
+                        <span @click="jumpcity">{{cityonly.city}}></span>
                     </li>
                 </ul>
                 <div class="quotation">
@@ -112,11 +112,12 @@ export default {
     }
   },
   created() {
-    console.log(this.$route.query);
+    console.log('ccccc',this.cityonly,this.cityonly=='北京');
     // cityId=201
+    var cit=this.cityonly=='北京'?201:this.cityonly.CityID;
     this.getQuotation({
       carId: this.$route.query.carId,
-      cityId: 201,
+      cityId:cit,
       _1563237651079: ""
     });
   },
